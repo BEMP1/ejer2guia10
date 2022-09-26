@@ -83,8 +83,8 @@ public class Electrodomestico {
         return electrodomestico;
     }
 
-    public void precioFinal(double precio, char consumo, double peso) {
-        switch (consumo) {
+    public void precioFinal(Electrodomestico electrodomestico) {
+        switch (electrodomestico.getConsumoEnergetico()) {
             case 'A':
                 precio = precio + 1000;
                 break;
@@ -107,16 +107,17 @@ public class Electrodomestico {
                 System.out.println("Error al subir el precio en el consumo");
         }
 
-        switch ((int) peso / 10) {
+        switch ((int) electrodomestico.getPesoKg() / 10) {
+            case 0:
             case 1:
-            case 2:
                 precio = precio + 100;
                 break;
+            case 2:
             case 3:
             case 4:
-            case 5:
                 precio = precio + 500;
                 break;
+            case 5:
             case 6:
             case 7:
                 precio = precio + 800;
