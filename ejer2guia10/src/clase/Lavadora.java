@@ -26,22 +26,21 @@ public class Lavadora extends Electrodomestico {
         this.carga = carga;
     }
 
-    public Lavadora crearLavadora() {
+    public Lavadora crearLavadora(Lavadora lavadora) {
         Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n");
-        Lavadora lavadora = new Lavadora();
-        lavadora.crearElectrodomestico();
-        lavadora.setCarga(leer.nextDouble());
-        while (lavadora.getCarga() < 0) {
+        crearElectrodomestico(lavadora);
+        System.out.println("Ingrese carga");
+        setCarga(leer.nextDouble());
+        while (getCarga() < 0) {
             System.out.println("Se ingreso una carga menor a 0");
-            lavadora.setCarga(leer.nextDouble());
+            setCarga(leer.nextDouble());
         }
         return lavadora;
     }
     
-    @Override
-    public void precioFinal(Electrodomestico lavadora) {
+    public void precioFinal(Lavadora lavadora) {
         super.precioFinal(lavadora);
-        if (carga>30) {
+        if (getCarga()>30) {
             precio = precio + 500;
         }
         

@@ -54,6 +54,7 @@ public class Electrodomestico {
     public void comprobarConsumoEnergetico(char consumo) {
         if (consumo != 'A' && consumo != 'B' && consumo != 'C' && consumo != 'D' && consumo != 'E' && consumo != 'F') {
             consumo = 'F';
+            System.out.println("Se cambio el consumo energetico");
         }
     }
 
@@ -63,28 +64,27 @@ public class Electrodomestico {
         }
     }
 
-    public Electrodomestico crearElectrodomestico() {
+    public Electrodomestico crearElectrodomestico(Electrodomestico electrodomestico) {
         Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n");
-        Electrodomestico electrodomestico = new Electrodomestico();
-        electrodomestico.setPrecio(1000);
+        setPrecio(1000);
         System.out.println("Ingrese el color");
-        electrodomestico.setColor(leer.next());
-        electrodomestico.comprobarColor(electrodomestico.getColor());
+        setColor(leer.next());
+        comprobarColor(getColor());
         System.out.println("Ingrese el consumo electrico");
-        electrodomestico.setConsumoEnergetico(leer.next().charAt(0));
-        electrodomestico.comprobarConsumoEnergetico(electrodomestico.getConsumoEnergetico());
+        setConsumoEnergetico(Character.toUpperCase(leer.next().charAt(0)));
+        comprobarConsumoEnergetico(getConsumoEnergetico());
         System.out.println("Ingrese el peso en Kg");
-        electrodomestico.setPesoKg(leer.nextDouble());
-        while (electrodomestico.getPesoKg() < 0) {
+        setPesoKg(leer.nextDouble());
+        while (getPesoKg() < 0) {
             System.out.println("Se ingreso un peso menor a 0");
-            electrodomestico.setPesoKg(leer.nextDouble());
+            setPesoKg(leer.nextDouble());
         }
 
         return electrodomestico;
     }
 
     public void precioFinal(Electrodomestico electrodomestico) {
-        switch (electrodomestico.getConsumoEnergetico()) {
+        switch (getConsumoEnergetico()) {
             case 'A':
                 precio = precio + 1000;
                 break;
@@ -107,7 +107,7 @@ public class Electrodomestico {
                 System.out.println("Error al subir el precio en el consumo");
         }
 
-        switch ((int) electrodomestico.getPesoKg() / 10) {
+        switch ((int) getPesoKg() / 10) {
             case 0:
             case 1:
                 precio = precio + 100;
